@@ -77,7 +77,7 @@ function triggerSparkleBlast(clickX, clickY) {
     animateSparkles();
 }
 
-// 🚪 3. FIXED TRANSITION TRIGGER ENGINE (Browser Policy Safe Handle)
+// 🚪 3. FIXED TRANSITION TRIGGER ENGINE
 let isGateDestroyed = false;
 
 function triggerGateDeployment(event) {
@@ -88,11 +88,9 @@ function triggerGateDeployment(event) {
     const clickX = event.clientX || window.innerWidth / 2;
     const clickY = event.clientY || window.innerHeight / 2;
     
-    // Core click response: Trigger gift lid pop & sparkle explosion
     gateScreen.classList.add('box-clicked');
     triggerSparkleBlast(clickX, clickY);
 
-    // Step B: Deploy sliding blades regardless of media playback success
     setTimeout(() => {
         gateScreen.classList.add('gate-deployed');
         
@@ -104,16 +102,16 @@ function triggerGateDeployment(event) {
                 document.getElementById('main-content-vault').style.opacity = '1';
                 initAmbientDustEngine(); 
                 initScratchModule();      
+                loadWishesFromVault(); // Load localStorage data on startup
             }, 50);
 
-            // Execute Audio Node Loop safely
             const music = document.getElementById('bgMusic');
             const audioOrb = document.getElementById('audio-orb-controller');
             if (music) { 
                 music.volume = 0.55; 
                 music.play()
                     .then(() => audioOrb.classList.add('playing'))
-                    .catch(() => console.log("Audio waiting interface token context setup.")); 
+                    .catch(() => console.log("Audio awaiting interaction hook.")); 
             }
         }, 1100);
     }, 350);
@@ -141,7 +139,6 @@ function initScratchModule() {
     if (!canvas || !container) return;
     const ctx = canvas.getContext('2d');
     
-    // Exact dynamic screen match fix
     canvas.width = container.clientWidth; 
     canvas.height = container.clientHeight;
 
@@ -181,31 +178,59 @@ function initScratchModule() {
     canvas.addEventListener('touchmove', scratchAction);
 }
 
-// 🧧 6. LIVE SUBBOARD WISH INJECTION HANDLING
+// 🧧 6. LIVE SUBBOARD WISH INJECTION WITH REAL LOCALSTORAGE STORAGE ENGINE
 document.getElementById('teamWishForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     const nameInput = document.getElementById('teamMemberName');
     const msgInput = document.getElementById('teamMemberMessage');
+    
+    const newWish = {
+        name: nameInput.value,
+        message: msgInput.value,
+        timestamp: new Date().getTime()
+    };
+
+    // Save process inside localStorage database pipeline
+    let activeVault = JSON.parse(localStorage.getItem('mukul_birthday_vault')) || [];
+    activeVault.unshift(newWish);
+    localStorage.setItem('mukul_birthday_vault', JSON.stringify(activeVault));
+
+    // Render directly on interface
+    renderWishToWall(newWish.name, newWish.message, true);
+    
+    this.reset();
+});
+
+function renderWishToWall(name, message, injectAtTop = false) {
     const wall = document.getElementById('liveWishesWall');
     const placeholder = document.getElementById('feedPlaceholderText');
-    
     if(placeholder) placeholder.remove();
 
     const card = document.createElement('div');
     card.className = 'user-message-card';
     
-    const h4 = document.createElement('h4');
-    h4.innerText = nameInput.value;
+    const h4 = document.createElement('h4'); h4.innerText = name;
+    const p = document.createElement('p'); p.innerText = message;
     
-    const p = document.createElement('p');
-    p.innerText = msgInput.value;
+    card.appendChild(h4); card.appendChild(p);
     
-    card.appendChild(h4);
-    card.appendChild(p);
-    
-    wall.insertBefore(card, wall.firstChild);
-    
-    this.reset();
-    wall.scrollTop = 0;
-});
+    if(injectAtTop) {
+        wall.insertBefore(card, wall.firstChild);
+        wall.scrollTop = 0;
+    } else {
+        wall.appendChild(card);
+    }
+}
+
+function loadWishesFromVault() {
+    const activeVault = JSON.parse(localStorage.getItem('mukul_birthday_vault')) || [];
+    if(activeVault.length > 0) {
+        const placeholder = document.getElementById('feedPlaceholderText');
+        if(placeholder) placeholder.remove();
+        
+        activeVault.forEach(wish => {
+            renderWishToWall(wish.name, wish.message, false);
+        });
+    }
+                                           }
