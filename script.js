@@ -37,7 +37,7 @@ function initAmbientDustEngine() {
     renderDustLoop();
 }
 
-// ════════ 2. MICROSCOPIC SPARKLE ENGINE (ORB POP METRIC) ════════
+// ════════ 2. MICROSCOPIC SPARKLE ENGINE (BOX POP EXPLOSION) ════════
 let sparkleParticles = [];
 function triggerSparkleBlast(clickX, clickY) {
     const canvas = document.createElement('canvas');
@@ -77,18 +77,22 @@ function triggerSparkleBlast(clickX, clickY) {
     animateSparkles();
 }
 
-// 🚪 3. DYNAMIC CURTAIN DEPLOYMENT SYSTEM
+// 🚪 3. FIXED TRANSITION TRIGGER ENGINE (Browser Policy Safe Handle)
 let isGateDestroyed = false;
 
-function triggerGateDeployment() {
+function triggerGateDeployment(event) {
     if (isGateDestroyed) return;
     isGateDestroyed = true;
 
     const gateScreen = document.getElementById('gift-vault-screen');
+    const clickX = event.clientX || window.innerWidth / 2;
+    const clickY = event.clientY || window.innerHeight / 2;
     
-    gateScreen.classList.add('orb-clicked');
-    triggerSparkleBlast(window.innerWidth / 2, window.innerHeight / 2);
+    // Core click response: Trigger gift lid pop & sparkle explosion
+    gateScreen.classList.add('box-clicked');
+    triggerSparkleBlast(clickX, clickY);
 
+    // Step B: Deploy sliding blades regardless of media playback success
     setTimeout(() => {
         gateScreen.classList.add('gate-deployed');
         
@@ -102,17 +106,17 @@ function triggerGateDeployment() {
                 initScratchModule();      
             }, 50);
 
-            // Execute Audio Node Loop
+            // Execute Audio Node Loop safely
             const music = document.getElementById('bgMusic');
             const audioOrb = document.getElementById('audio-orb-controller');
             if (music) { 
                 music.volume = 0.55; 
                 music.play()
                     .then(() => audioOrb.classList.add('playing'))
-                    .catch(() => console.log("Gesture sequence bypass token active.")); 
+                    .catch(() => console.log("Audio waiting interface token context setup.")); 
             }
         }, 1100);
-    }, 280);
+    }, 350);
 }
 
 // 🎵 4. INTERACTIVE AUDIO CONTROL MODULE
@@ -130,13 +134,14 @@ function toggleAudioEngine() {
     }
 }
 
-// 🧮 5. HIGH-REALISM BRUSHED GOLD SCRATCH ENGINE
+// 🧮 5. FIXED COVER RATIO CANVAS SCRATCH SURFACE GENERATOR
 function initScratchModule() {
     const canvas = document.getElementById('scratchCanvas');
     const container = document.getElementById('scratchBoxNode');
     if (!canvas || !container) return;
     const ctx = canvas.getContext('2d');
     
+    // Exact dynamic screen match fix
     canvas.width = container.clientWidth; 
     canvas.height = container.clientHeight;
 
@@ -187,7 +192,6 @@ document.getElementById('teamWishForm').addEventListener('submit', function(e) {
     
     if(placeholder) placeholder.remove();
 
-    // Create custom user message card component dynamically
     const card = document.createElement('div');
     card.className = 'user-message-card';
     
@@ -200,10 +204,8 @@ document.getElementById('teamWishForm').addEventListener('submit', function(e) {
     card.appendChild(h4);
     card.appendChild(p);
     
-    // Inject at the top of the feed layout
     wall.insertBefore(card, wall.firstChild);
     
-    // Smooth reset and auto-scroll viewport
     this.reset();
     wall.scrollTop = 0;
 });
