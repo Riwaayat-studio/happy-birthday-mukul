@@ -25,14 +25,13 @@ body {
     position: fixed; inset: 0; z-index: 2; pointer-events: none; opacity: 0.5;
 }
 
-/* ══ HIGH-END LUXURY LABELS ══ */
 .action-word.premium-action-text {
     font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.95rem; color: var(--matte-gold);
     letter-spacing: 0.4em; text-transform: uppercase; text-align: center;
     margin-top: 2.5rem; text-shadow: 0 4px 12px rgba(0,0,0,0.95);
 }
 
-/* 🚪 1. POP-UP SPARKLE GATEWAY WITH FUNCTIONAL GIFT BOX ══ */
+/* 🚪 1. POP-UP SPARKLE GATEWAY WITH GIFT BOX ══ */
 #gift-vault-screen {
     position: fixed; inset: 0; z-index: 99999; background: #020305;
 }
@@ -49,7 +48,6 @@ body {
 .blade-left { border-right: 1.5px solid rgba(197, 160, 89, 0.15); }
 .blade-right { border-left: 1.5px solid rgba(197, 160, 89, 0.15); }
 
-/* Realistic CSS Gift Box Style Assembly */
 .central-gift-box-anchor {
     position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
     width: 120px; height: 120px; z-index: 10;
@@ -94,14 +92,8 @@ body {
     color: var(--matte-gold); letter-spacing: 2px; text-shadow: 0 2px 8px #000;
 }
 
-/* Click Trigger Scale/Explode Classes */
-#gift-vault-screen.box-clicked .central-gift-box-anchor { 
-    transform: translate(-50%, -50%) scale(0.85); 
-    animation: none;
-}
-#gift-vault-screen.box-clicked .gift-box-lid {
-    transform: translateY(-40px) rotate(-15deg); opacity: 0;
-}
+#gift-vault-screen.box-clicked .central-gift-box-anchor { transform: translate(-50%, -50%) scale(0.85); animation: none; }
+#gift-vault-screen.box-clicked .gift-box-lid { transform: translateY(-40px) rotate(-15deg); opacity: 0; }
 #gift-vault-screen.gate-deployed .blade-left { transform: translateX(-100%); }
 #gift-vault-screen.gate-deployed .blade-right { transform: translateX(100%); }
 #gift-vault-screen.gate-deployed .central-gift-box-anchor { opacity: 0; pointer-events: none; }
@@ -116,13 +108,16 @@ body {
 
 .main-title-cinzel {
     font-family: 'Cinzel Decorative', serif; font-weight: 900; 
-    font-size: clamp(2.2rem, 7.5vw, 3.8rem); color: var(--warm-ivory); 
-    text-shadow: 0 4px 25px rgba(0,0,0,0.95); line-height: 1.25; text-align: center;
+    font-size: clamp(2.2rem, 7.5vw, 3.6rem); color: var(--warm-ivory); 
+    text-shadow: 0 4px 25px rgba(0,0,0,0.95); line-height: 1.3; text-align: center;
 }
 
-.main-title-cinzel span {
-    display: block; font-size: 0.9em; margin-top: 0.4rem; color: var(--matte-gold);
-    text-shadow: 0 0 35px var(--shadow-matte-gold);
+/* 🏆 RE-DESIGNED EXTREMELY ELEGANT MUKUL SIR FONT CONFIGURATION (Image 2 Fix) */
+.main-title-cinzel .clean-elegant-title {
+    display: block; font-family: 'Cinzel', serif !important; font-weight: 700 !important;
+    font-size: 0.85em !important; margin-top: 0.6rem; color: var(--matte-gold) !important;
+    letter-spacing: 6px !important; text-transform: uppercase !important;
+    text-shadow: 0 0 30px var(--shadow-matte-gold);
 }
 
 .senior-photo-frame {
@@ -137,13 +132,20 @@ body {
     color: var(--warm-ivory); max-width: 540px; line-height: 1.75; text-align: center; opacity: 0.9;
 }
 
-/* ══ 3. MESSAGES SECTION CORE ══ */
+/* ══ 3. MESSAGES SECTION CORE (Label Overrides Applied) ══ */
 .section-container { padding: 7rem 1.5rem; display: flex; flex-direction: column; align-items: center; width: 100%; }
+
+.section-title.text-label-override {
+    font-family: 'Cinzel', serif; font-weight: 700; font-size: clamp(1.2rem, 4.5vw, 1.7rem);
+    color: var(--matte-gold); margin-bottom: 3.5rem; text-transform: uppercase; letter-spacing: 2px; text-align: center;
+    line-height: 1.4;
+}
+
 .section-title {
     font-family: 'Cinzel', serif; font-weight: 700; font-size: 1.85rem; color: var(--matte-gold); margin-bottom: 4.5rem; text-transform: uppercase; letter-spacing: 0.3em; text-align: center;
 }
 
-.message-board-layout { width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 2rem; }
+.message-board-layout { width: 100%; max-width: 450px; display: flex; flex-direction: column; gap: 1.5rem; }
 .rsvp-form-box { 
     width: 100%; display: flex; flex-direction: column; gap: 1.3rem; 
     background: rgba(255, 255, 255, 0.02); padding: 1.8rem 1.3rem; border-radius: 12px;
@@ -162,6 +164,11 @@ body {
     width: 100%; padding: 1.15rem; background: var(--matte-gold); border: none; border-radius: 6px;
     font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.95rem; color: #020305; letter-spacing: 0.2em;
     cursor: pointer; box-shadow: 0 10px 25px rgba(197,160,89,0.2);
+}
+
+.wall-sub-heading-label {
+    font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--matte-gold);
+    letter-spacing: 3px; text-align: center; margin: 1rem 0 0.5rem 0; text-transform: uppercase;
 }
 
 .live-feed-panel {
@@ -204,4 +211,4 @@ body {
 
 @keyframes waveEngine { 0% { height: 4px; } 100% { height: 20px; } }
 footer { text-align: center; padding: 5rem 1rem; border-top: 1px solid rgba(255,255,255,0.02); font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.3em; opacity: 0.35; }
-        
+    
