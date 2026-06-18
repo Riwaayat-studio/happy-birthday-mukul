@@ -4,42 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Birthday Mukul Sir</title>
-    <!-- Google Fonts Premium Hub Connection -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@1,600;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Canvas for Low-Visibility Luxury Floating Micro Gold Dust Particles -->
     <canvas id="ambientDustCanvas"></canvas>
 
-    <!-- 🚪 1. HIGH-HYPER REALISTIC POP-UP SPARKLE GATEWAY -->
     <div id="gift-vault-screen">
-        <div class="split-gate-viewport" onclick="triggerGateDeployment()">
+        <div class="split-gate-viewport" onclick="triggerGateDeployment(event)">
             <div class="gate-blade blade-left"></div>
             <div class="gate-blade blade-right"></div>
-            <div class="central-metallic-orb-anchor">
-                <div class="orb-core-wave"></div>
-                <span class="orb-cta">TAP TO OPEN</span>
+            
+            <div class="central-gift-box-anchor">
+                <div class="gift-box-lid"></div>
+                <div class="gift-box-body"></div>
+                <div class="gift-box-ribbon-v"></div>
+                <div class="gift-box-ribbon-h"></div>
+                <span class="gift-box-cta">TAP TO OPEN</span>
             </div>
         </div>
     </div>
 
-    <!-- 🌌 2. MAIN INTERFACE CONTENT CONTAINER -->
     <div id="main-content-vault">
         
-        <!-- Core Hero Zone with Accurate Geometric Alignment -->
         <header class="hero-header-zone">
             <div class="hero-title-container">
                 <h1 class="main-title-cinzel">HAPPY BIRTHDAY <span>MUKUL SIR</span></h1>
             </div>
             
-            <!-- Senior Photo Container with Golden Outline and Ambient Outside Glow -->
             <div class="senior-photo-frame">
-                <img src="1000174755.jpg" alt="Mukul Sir" class="senior-img">
+                <img src="mukul.jpg" alt="Mukul Sir" class="senior-img">
             </div>
 
-            <!-- Operational Appraisal Respectful Note -->
             <p class="mukul-appraisal-quote">
                 "Celebrating the leadership of an exceptional mentor. Someone who manages every challenging situation with infinite patience, guides the team with absolute transparency, and inspires everyone to perform at their absolute peak. Happy Birthday to our master of execution—Mukul Sir!"
             </p>
@@ -47,12 +44,10 @@
             <p class="action-word premium-action-text scroll-indicator">SCROLL DOWN</p>
         </header>
 
-        <!-- 🧧 3. TEAM MESSAGE BOARD WALL SYSTEM (LIVE FEED INJECTION) -->
         <section class="section-container">
             <h2 class="section-title">Send Your Blessings</h2>
             <div class="message-board-layout">
                 
-                <!-- Inputs Section -->
                 <form id="teamWishForm" class="rsvp-form-box">
                     <div class="input-glow-group">
                         <input type="text" id="teamMemberName" placeholder="Your Name" required class="rsvp-input">
@@ -63,7 +58,6 @@
                     <button type="submit" class="rsvp-submit-btn">SEND WISH</button>
                 </form>
 
-                <!-- Live Auto-Scrollboard Feed Panel -->
                 <div class="live-feed-panel" id="liveWishesWall">
                     <div class="feed-placeholder" id="feedPlaceholderText">No messages sent yet. Be the first to wish Sir!</div>
                 </div>
@@ -71,12 +65,10 @@
             </div>
         </section>
 
-        <!-- 🔒 4. LAST ZONE: TEXTURED MATTE GOLD FOIL SECRET SCRATCH WISH -->
         <section class="section-container">
             <h2 class="section-title">The Secret Wish</h2>
             <div class="scratch-canvas-container physical-depth-box" id="scratchBoxNode">
                 <div class="secret-wedding-message">
-                    <!-- Heartfelt Custom Message from Junior -->
                     <p class="final-wish-paragraph">
                         "Happy Birthday, Mukul Sir! Whether it is handling intense operational pressure or managing routine coordination challenges, your presence always keeps everything moving smoothly like a charm. Thank you for being much more than just a manager—a true guide, mentor, and shield for all of us. Wishing you a magnificent year ahead filled with unparalleled success and green metrics! <br><br><span class="sign-off-text">— From Jarvis</span>"
                     </p>
@@ -92,16 +84,14 @@
 
     </div>
 
-    <!-- Glassmorphic Audio Engine Floating Controller -->
     <div id="audio-orb-controller" onclick="toggleAudioEngine()">
         <div class="wave-bar"></div>
         <div class="wave-bar"></div>
         <div class="wave-bar"></div>
     </div>
 
-    <!-- Background Music Loop Handle Pipeline (Name Suggested: wedding-ambience.mp3) -->
     <audio id="bgMusic" loop>
-        <source src="wedding-ambience.mp3" type="audio/mp3">
+        <source src="bday.mp3" type="audio/mp3">
     </audio>
 
 </body>
