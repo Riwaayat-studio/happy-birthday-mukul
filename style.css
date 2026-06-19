@@ -112,7 +112,6 @@ body {
     text-shadow: 0 4px 25px rgba(0,0,0,0.95); line-height: 1.3; text-align: center;
 }
 
-/* 👑 RE-DESIGNED EXTREMELY ELEGANT MUKUL SIR FONT CONFIGURATION (Image 2 Fix) */
 .main-title-cinzel .clean-elegant-title {
     display: block; font-family: 'Cinzel', serif !important; font-weight: 700 !important;
     font-size: 0.85em !important; margin-top: 0.6rem; color: var(--matte-gold) !important;
@@ -132,7 +131,7 @@ body {
     color: var(--warm-ivory); max-width: 540px; line-height: 1.75; text-align: center; opacity: 0.9;
 }
 
-/* ══ 3. MESSAGES SECTION CORE (Label Overrides BPO Look) ══ */
+/* ══ 3. MESSAGES SECTION CORE ══ */
 .section-container { padding: 7rem 1.5rem; display: flex; flex-direction: column; align-items: center; width: 100%; }
 
 .section-title.text-label-override {
@@ -163,8 +162,9 @@ body {
 .rsvp-submit-btn {
     width: 100%; padding: 1.15rem; background: var(--matte-gold); border: none; border-radius: 6px;
     font-family: 'Cinzel', serif; font-weight: 700; font-size: 0.95rem; color: #020305; letter-spacing: 0.2em;
-    cursor: pointer; box-shadow: 0 10px 25px rgba(197,160,89,0.2);
+    cursor: pointer; box-shadow: 0 10px 25px rgba(197,160,89,0.2); transition: background 0.3s;
 }
+.rsvp-submit-btn:disabled { background: #444; color: #888; cursor: not-allowed; box-shadow: none; }
 
 .wall-sub-heading-label {
     font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--matte-gold);
