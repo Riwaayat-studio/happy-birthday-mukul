@@ -1,4 +1,4 @@
-// ════════ LATEST LOCKED CENTRAL PUBLIC DRIVE DATABASE PIPELINE ════════
+// ════════ THE BACKEND RE-DIRECTION AND CORS BYPASS STREAM PIPELINE ════════
 const DEPLOYMENT_URL = "https://script.google.com/macros/s/AKfycbwd6lIvs6UhVgzQsDjlaSJaz7voKUZlbDZTce0YMq7ld93Ih2D-Y8UYu9jTDCg0mNBJ2A/exec";
 
 // ════════ 1. HYPER REALISTIC AMBIENT GOLD DUST ENGINE ════════
@@ -35,7 +35,7 @@ function initAmbientDustEngine() {
     renderDustLoop();
 }
 
-// ════════ 2. MICROSCOPIC SPARKLE ENGINE (BOX POP EXP) ════════
+// ════════ 2. MICROSCOPIC SPARKLE ENGINE (BOX POP EXPLOSION) ════════
 let sparkleParticles = [];
 function triggerSparkleBlast(clickX, clickY) {
     const canvas = document.createElement('canvas');
@@ -68,7 +68,7 @@ function triggerSparkleBlast(clickX, clickY) {
     animateSparkles();
 }
 
-// 🚪 3. TRANSITION SPLIT GATE CONTROLLER
+// 🚪 3. FIXED TRANSITION TRIGGER ENGINE
 let isGateDestroyed = false;
 function triggerGateDeployment(event) {
     if (isGateDestroyed) return;
@@ -90,7 +90,7 @@ function triggerGateDeployment(event) {
                 document.getElementById('main-content-vault').style.opacity = '1';
                 initAmbientDustEngine(); 
                 initScratchModule();      
-                loadWishesFromGoogleDrive(); // Load public drive wishes on opening
+                loadWishesFromGoogleDrive(); // Load public messages on window startup
             }, 50);
 
             const music = document.getElementById('bgMusic');
@@ -103,7 +103,7 @@ function triggerGateDeployment(event) {
     }, 350);
 }
 
-// 🎵 4. INTERACTIVE AUDIO TOGGLE
+// 🎵 4. INTERACTIVE AUDIO CONTROL MODULE
 function toggleAudioEngine() {
     const music = document.getElementById('bgMusic');
     const audioOrb = document.getElementById('audio-orb-controller');
@@ -150,8 +150,46 @@ function initScratchModule() {
     canvas.addEventListener('touchmove', scratchAction);
 }
 
-// 🧧 6. PUBLIC WISH BOARD RENDER CONTROLLER
-function renderWishToWall(name, message) {
+// 🧧 6. ASYNC AJAX SUBMISSION HANDLE (No White Redirect Redirect Screen)
+document.getElementById('teamWishForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // Stop standard form navigation freeze
+    
+    const nameInput = document.getElementById('teamMemberName');
+    const msgInput = document.getElementById('teamMemberMessage');
+    const submitBtn = document.getElementById('submitBtnNode');
+    
+    const nameVal = nameInput.value.trim();
+    const msgVal = msgInput.value.trim();
+
+    if(!nameVal || !msgVal) return;
+
+    submitBtn.innerText = "SENDING...";
+    submitBtn.disabled = true;
+
+    // Send data asynchronously in background to Google Sheet Engine
+    const targetFormData = new URLSearchParams();
+    targetFormData.append('name', nameVal);
+    targetFormData.append('message', msgVal);
+
+    fetch(DEPLOYMENT_URL, {
+        method: "POST",
+        body: targetFormData,
+        headers: { "Content-Type": "application/x-www-form-urlencoded" }
+    })
+    .then(() => {
+        // Instant Client-side injection on success layout
+        renderWishToWall(nameVal, msgVal, true);
+        nameInput.value = "";
+        msgInput.value = "";
+    })
+    .catch(err => console.log("AJAX submission error stream: ", err))
+    .finally(() => {
+        submitBtn.innerText = "SEND WISH";
+        submitBtn.disabled = false;
+    });
+});
+
+function renderWishToWall(name, message, injectAtTop = false) {
     const wall = document.getElementById('liveWishesWall');
     const placeholder = document.getElementById('feedPlaceholderText');
     if(placeholder) placeholder.remove();
@@ -161,9 +199,16 @@ function renderWishToWall(name, message) {
     const h4 = document.createElement('h4'); h4.innerText = name;
     const p = document.createElement('p'); p.innerText = message;
     card.appendChild(h4); card.appendChild(p);
-    wall.appendChild(card);
+    
+    if(injectAtTop) {
+        wall.insertBefore(card, wall.firstChild);
+        wall.scrollTop = 0;
+    } else {
+        wall.appendChild(card);
+    }
 }
 
+// Global fetch pipeline loop from Google Drive deployment endpoint
 function loadWishesFromGoogleDrive() {
     const wall = document.getElementById('liveWishesWall');
     fetch(DEPLOYMENT_URL)
@@ -172,16 +217,16 @@ function loadWishesFromGoogleDrive() {
         if(data.length > 0) {
             const placeholder = document.getElementById('feedPlaceholderText');
             if(placeholder) placeholder.remove();
-            wall.innerHTML = ""; // Wipe loading text
+            wall.innerHTML = ""; // Clear loader node context
             data.reverse().forEach(wish => {
-                renderWishToWall(wish.name, wish.message);
+                renderWishToWall(wish.name, wish.message, false);
             });
         } else {
             document.getElementById('feedPlaceholderText').innerText = "No messages sent yet. Be the first to wish Sir!";
         }
     })
     .catch(err => {
-        console.log("Error: ", err);
+        console.log("Read transaction fail: ", err);
         document.getElementById('feedPlaceholderText').innerText = "No messages sent yet. Be the first to wish Sir!";
     });
-        }
+}
