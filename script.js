@@ -1,5 +1,5 @@
 // ════════ THE BACKEND RE-DIRECTION AND CORS BYPASS STREAM PIPELINE ════════
-const DEPLOYMENT_URL = "https://script.google.com/macros/s/AKfycbwd6lIvs6UhVgzQsDjlaSJaz7voKUZlbDZTce0YMq7ld93Ih2D-Y8UYu9jTDCg0mNBJ2A/exec";
+const DEPLOYMENT_URL = "https://script.google.com/macros/s/AKfycbwuRQjXeQkclDBJR_nB1WYWeYvMpixj8N6VCcrarndIQyNccsLlxz_7OookRluLg0tPig/exec";
 
 // ════════ 1. HYPER REALISTIC AMBIENT GOLD DUST ENGINE ════════
 let dustCanvas, dustCtx, particlesArray = [];
@@ -68,7 +68,7 @@ function triggerSparkleBlast(clickX, clickY) {
     animateSparkles();
 }
 
-// 🚪 3. FIXED TRANSITION TRIGGER ENGINE
+// 🚪 3. TRANSITION SPLIT GATE CONTROLLER
 let isGateDestroyed = false;
 function triggerGateDeployment(event) {
     if (isGateDestroyed) return;
@@ -90,7 +90,7 @@ function triggerGateDeployment(event) {
                 document.getElementById('main-content-vault').style.opacity = '1';
                 initAmbientDustEngine(); 
                 initScratchModule();      
-                loadWishesFromGoogleDrive(); // Load public messages on window startup
+                loadWishesFromGoogleDrive(); // Pre-load global messages on startup
             }, 50);
 
             const music = document.getElementById('bgMusic');
@@ -150,9 +150,9 @@ function initScratchModule() {
     canvas.addEventListener('touchmove', scratchAction);
 }
 
-// 🧧 6. ASYNC AJAX SUBMISSION HANDLE (No White Redirect Redirect Screen)
+// 🧧 6. ASYNC AJAX SUBMISSION HANDLE (No White Redirect Screen)
 document.getElementById('teamWishForm').addEventListener('submit', function(e) {
-    e.preventDefault(); // Stop standard form navigation freeze
+    e.preventDefault(); 
     
     const nameInput = document.getElementById('teamMemberName');
     const msgInput = document.getElementById('teamMemberMessage');
@@ -166,23 +166,23 @@ document.getElementById('teamWishForm').addEventListener('submit', function(e) {
     submitBtn.innerText = "SENDING...";
     submitBtn.disabled = true;
 
-    // Send data asynchronously in background to Google Sheet Engine
+    // ⚡ ACTION: Immediate UI Update & Form Clear (Google Ke Response Ka Wait Nahi Karega)
+    renderWishToWall(nameVal, msgVal, true);
+    nameInput.value = "";
+    msgInput.value = "";
+
+    // Send data to Google Sheet in background quietly
     const targetFormData = new URLSearchParams();
     targetFormData.append('name', nameVal);
     targetFormData.append('message', msgVal);
 
     fetch(DEPLOYMENT_URL, {
         method: "POST",
+        mode: "no-cors", // Crucial fix to bypass browser CORS response blocks
         body: targetFormData,
         headers: { "Content-Type": "application/x-www-form-urlencoded" }
     })
-    .then(() => {
-        // Instant Client-side injection on success layout
-        renderWishToWall(nameVal, msgVal, true);
-        nameInput.value = "";
-        msgInput.value = "";
-    })
-    .catch(err => console.log("AJAX submission error stream: ", err))
+    .catch(err => console.log("Silent background handle trace."))
     .finally(() => {
         submitBtn.innerText = "SEND WISH";
         submitBtn.disabled = false;
@@ -217,7 +217,7 @@ function loadWishesFromGoogleDrive() {
         if(data.length > 0) {
             const placeholder = document.getElementById('feedPlaceholderText');
             if(placeholder) placeholder.remove();
-            wall.innerHTML = ""; // Clear loader node context
+            wall.innerHTML = ""; // Clear loader text
             data.reverse().forEach(wish => {
                 renderWishToWall(wish.name, wish.message, false);
             });
@@ -229,4 +229,5 @@ function loadWishesFromGoogleDrive() {
         console.log("Read transaction fail: ", err);
         document.getElementById('feedPlaceholderText').innerText = "No messages sent yet. Be the first to wish Sir!";
     });
-}
+                    }
+                                                         
