@@ -1,3 +1,6 @@
+// ════════ LATEST LOCKED CENTRAL PUBLIC DRIVE DATABASE PIPELINE ════════
+const DEPLOYMENT_URL = "https://script.google.com/macros/s/AKfycbwd6lIvs6UhVgzQsDjlaSJaz7voKUZlbDZTce0YMq7ld93Ih2D-Y8UYu9jTDCg0mNBJ2A/exec";
+
 // ════════ 1. HYPER REALISTIC AMBIENT GOLD DUST ENGINE ════════
 let dustCanvas, dustCtx, particlesArray = [];
 
@@ -5,9 +8,7 @@ function initAmbientDustEngine() {
     dustCanvas = document.getElementById('ambientDustCanvas');
     if(!dustCanvas) return;
     dustCtx = dustCanvas.getContext('2d');
-    
-    dustCanvas.width = window.innerWidth;
-    dustCanvas.height = window.innerHeight;
+    dustCanvas.width = window.innerWidth; dustCanvas.height = window.innerHeight;
 
     particlesArray = [];
     for (let i = 0; i < 55; i++) {
@@ -26,43 +27,34 @@ function initAmbientDustEngine() {
         particlesArray.forEach(p => {
             p.y += p.speedY; p.x += p.speedX;
             if (p.y > dustCanvas.height) { p.y = -5; p.x = Math.random() * dustCanvas.width; }
-            
-            dustCtx.beginPath();
-            dustCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-            dustCtx.fillStyle = `rgba(197, 160, 89, ${p.opacity})`;
-            dustCtx.fill();
+            dustCtx.beginPath(); dustCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            dustCtx.fillStyle = `rgba(197, 160, 89, ${p.opacity})`; dustCtx.fill();
         });
         requestAnimationFrame(renderDustLoop);
     }
     renderDustLoop();
 }
 
-// ════════ 2. MICROSCOPIC SPARKLE ENGINE (BOX POP EXPLOSION) ════════
+// ════════ 2. MICROSCOPIC SPARKLE ENGINE (BOX POP EXP) ════════
 let sparkleParticles = [];
 function triggerSparkleBlast(clickX, clickY) {
     const canvas = document.createElement('canvas');
-    canvas.style.position = 'fixed'; canvas.style.inset = '0';
-    canvas.style.zIndex = '999999'; canvas.style.pointerEvents = 'none';
+    canvas.style.position = 'fixed'; canvas.style.inset = '0'; canvas.style.zIndex = '999999'; canvas.style.pointerEvents = 'none';
     document.body.appendChild(canvas);
-    
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     
     for (let i = 0; i < 80; i++) {
         sparkleParticles.push({
-            x: clickX, y: clickY,
-            radius: Math.random() * 2.5 + 1,
-            speedX: (Math.random() - 0.5) * 14,
-            speedY: (Math.random() - 0.5) * 14,
-            gravity: 0.15,
-            opacity: 1
+            x: clickX, y: clickY, radius: Math.random() * 2.5 + 1,
+            speedX: (Math.random() - 0.5) * 14, speedY: (Math.random() - 0.5) * 14,
+            gravity: 0.15, opacity: 1
         });
     }
     
     function animateSparkles() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         let alive = false;
-        
         sparkleParticles.forEach(p => {
             p.speedY += p.gravity; p.x += p.speedX; p.y += p.speedY; p.opacity -= 0.025;
             if (p.opacity > 0) {
@@ -71,15 +63,13 @@ function triggerSparkleBlast(clickX, clickY) {
                 ctx.fillStyle = `rgba(197, 160, 89, ${p.opacity})`; ctx.fill();
             }
         });
-        
         if (alive) { requestAnimationFrame(animateSparkles); } else { canvas.remove(); sparkleParticles = []; }
     }
     animateSparkles();
 }
 
-// 🚪 3. FIXED TRANSITION TRIGGER ENGINE
+// 🚪 3. TRANSITION SPLIT GATE CONTROLLER
 let isGateDestroyed = false;
-
 function triggerGateDeployment(event) {
     if (isGateDestroyed) return;
     isGateDestroyed = true;
@@ -93,70 +83,53 @@ function triggerGateDeployment(event) {
 
     setTimeout(() => {
         gateScreen.classList.add('gate-deployed');
-        
         setTimeout(() => {
             gateScreen.style.display = 'none';
             document.getElementById('main-content-vault').style.display = 'block';
-            
             setTimeout(() => {
                 document.getElementById('main-content-vault').style.opacity = '1';
                 initAmbientDustEngine(); 
                 initScratchModule();      
-                loadWishesFromVault(); // Load localStorage data on startup
+                loadWishesFromGoogleDrive(); // Load public drive wishes on opening
             }, 50);
 
             const music = document.getElementById('bgMusic');
             const audioOrb = document.getElementById('audio-orb-controller');
             if (music) { 
                 music.volume = 0.55; 
-                music.play()
-                    .then(() => audioOrb.classList.add('playing'))
-                    .catch(() => console.log("Audio awaiting interaction hook.")); 
+                music.play().then(() => audioOrb.classList.add('playing')).catch(() => {}); 
             }
         }, 1100);
     }, 350);
 }
 
-// 🎵 4. INTERACTIVE AUDIO CONTROL MODULE
+// 🎵 4. INTERACTIVE AUDIO TOGGLE
 function toggleAudioEngine() {
     const music = document.getElementById('bgMusic');
     const audioOrb = document.getElementById('audio-orb-controller');
     if (!music) return;
-
-    if (music.paused) {
-        music.play();
-        audioOrb.classList.add('playing');
-    } else {
-        music.pause();
-        audioOrb.classList.remove('playing');
-    }
+    if (music.paused) { music.play(); audioOrb.classList.add('playing'); } 
+    else { music.pause(); audioOrb.classList.remove('playing'); }
 }
 
-// 🧮 5. FIXED COVER RATIO CANVAS SCRATCH SURFACE GENERATOR
+// 🧮 5. CANVAS SCRATCH MODULE MATRIX
 function initScratchModule() {
     const canvas = document.getElementById('scratchCanvas');
     const container = document.getElementById('scratchBoxNode');
     if (!canvas || !container) return;
     const ctx = canvas.getContext('2d');
-    
-    canvas.width = container.clientWidth; 
-    canvas.height = container.clientHeight;
+    canvas.width = container.clientWidth; canvas.height = container.clientHeight;
 
     let goldGrad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-    goldGrad.addColorStop(0, '#5C4A10');  
-    goldGrad.addColorStop(0.25, '#C5A059'); 
-    goldGrad.addColorStop(0.5, '#F9E6AF'); 
-    goldGrad.addColorStop(0.75, '#9E7720'); 
-    goldGrad.addColorStop(1, '#332704');  
+    goldGrad.addColorStop(0, '#5C4A10'); goldGrad.addColorStop(0.25, '#C5A059'); 
+    goldGrad.addColorStop(0.5, '#F9E6AF'); goldGrad.addColorStop(0.75, '#9E7720'); goldGrad.addColorStop(1, '#332704');  
 
     ctx.fillStyle = goldGrad; ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
     for (let i = 0; i < 850; i++) {
         let x = Math.random() * canvas.width; let y = Math.random() * canvas.height;
         ctx.fillStyle = Math.random() > 0.5 ? 'rgba(255,255,255,0.11)' : 'rgba(0,0,0,0.07)';
         ctx.fillRect(x, y, 1.2, 1.2);
     }
-
     ctx.font = '700 11px Cinzel, serif'; ctx.fillStyle = '#020305'; ctx.letterSpacing = '3px'; ctx.textAlign = 'center';
     ctx.fillText('SCRATCH TO REVEAL JUNIOR WISH', canvas.width / 2, canvas.height / 2 + 4);
 
@@ -169,7 +142,6 @@ function initScratchModule() {
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath(); ctx.arc(clientX - rect.left, clientY - rect.top, 25, 0, Math.PI * 2); ctx.fill();
     }
-
     canvas.addEventListener('mousedown', () => isDrawing = true);
     window.addEventListener('mouseup', () => isDrawing = false);
     canvas.addEventListener('mousemove', scratchAction);
@@ -178,59 +150,38 @@ function initScratchModule() {
     canvas.addEventListener('touchmove', scratchAction);
 }
 
-// 🧧 6. LIVE SUBBOARD WISH INJECTION WITH REAL LOCALSTORAGE STORAGE ENGINE
-document.getElementById('teamWishForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const nameInput = document.getElementById('teamMemberName');
-    const msgInput = document.getElementById('teamMemberMessage');
-    
-    const newWish = {
-        name: nameInput.value,
-        message: msgInput.value,
-        timestamp: new Date().getTime()
-    };
-
-    // Save process inside localStorage database pipeline
-    let activeVault = JSON.parse(localStorage.getItem('mukul_birthday_vault')) || [];
-    activeVault.unshift(newWish);
-    localStorage.setItem('mukul_birthday_vault', JSON.stringify(activeVault));
-
-    // Render directly on interface
-    renderWishToWall(newWish.name, newWish.message, true);
-    
-    this.reset();
-});
-
-function renderWishToWall(name, message, injectAtTop = false) {
+// 🧧 6. PUBLIC WISH BOARD RENDER CONTROLLER
+function renderWishToWall(name, message) {
     const wall = document.getElementById('liveWishesWall');
     const placeholder = document.getElementById('feedPlaceholderText');
     if(placeholder) placeholder.remove();
 
     const card = document.createElement('div');
     card.className = 'user-message-card';
-    
     const h4 = document.createElement('h4'); h4.innerText = name;
     const p = document.createElement('p'); p.innerText = message;
-    
     card.appendChild(h4); card.appendChild(p);
-    
-    if(injectAtTop) {
-        wall.insertBefore(card, wall.firstChild);
-        wall.scrollTop = 0;
-    } else {
-        wall.appendChild(card);
-    }
+    wall.appendChild(card);
 }
 
-function loadWishesFromVault() {
-    const activeVault = JSON.parse(localStorage.getItem('mukul_birthday_vault')) || [];
-    if(activeVault.length > 0) {
-        const placeholder = document.getElementById('feedPlaceholderText');
-        if(placeholder) placeholder.remove();
-        
-        activeVault.forEach(wish => {
-            renderWishToWall(wish.name, wish.message, false);
-        });
-    }
-                                           }
+function loadWishesFromGoogleDrive() {
+    const wall = document.getElementById('liveWishesWall');
+    fetch(DEPLOYMENT_URL)
+    .then(res => res.json())
+    .then(data => {
+        if(data.length > 0) {
+            const placeholder = document.getElementById('feedPlaceholderText');
+            if(placeholder) placeholder.remove();
+            wall.innerHTML = ""; // Wipe loading text
+            data.reverse().forEach(wish => {
+                renderWishToWall(wish.name, wish.message);
+            });
+        } else {
+            document.getElementById('feedPlaceholderText').innerText = "No messages sent yet. Be the first to wish Sir!";
+        }
+    })
+    .catch(err => {
+        console.log("Error: ", err);
+        document.getElementById('feedPlaceholderText').innerText = "No messages sent yet. Be the first to wish Sir!";
+    });
+        }
